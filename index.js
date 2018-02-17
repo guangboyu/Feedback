@@ -1,23 +1,30 @@
 const express=require('express');
 const passport = require('passport');
+const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
 
-require('./servers/passport');
+const keys = require('./config/keys');
+//middleware
 const app = express();
+app.use(
+  cookieSession({
+    maxAge: 30*24*60*60*1000,
+    keys:[keys.cookieKey]
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+//services
+mongoose.connect(keys.mongoURI);
+require('./models/user');
+require('./servers/passport');
+//routes
+require('./routes/authRoute')(app);
+
 
 app.get('/', function(req, res){
   res.json('hello');
 })
-
-app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
-
-app.get('/auth/google/callback',
-        passport.authenticate('google'),
-        (req, res) => {
-          console.log('hi');
-          res.redirect('/');
-        });
-
-
 
 const PORT = process.env.PORT || 5000;
 

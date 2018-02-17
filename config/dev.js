@@ -1,4 +1,6 @@
 module.exports = {
   googleClientID: '192409084979-gtk93299q23ss7prjc56tlmb2t4rectf.apps.googleusercontent.com',
-  googleClientSecret: 'ov120Bi4XZilR6vq57yR0wbJ'
+  googleClientSecret: 'ov120Bi4XZilR6vq57yR0wbJ',
+  mongoURI: 'mongodb://guangbo_prod:54guitou@ds035503.mlab.com:35503/emaily-prod',
+  cookieKey:'dajskdasjdlkadasidjaoqeqwqwwq'
 }
