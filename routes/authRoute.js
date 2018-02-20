@@ -1,4 +1,3 @@
-const express=require('express');
 const passport = require('passport');
 
 module.exports = app => {
@@ -7,14 +6,13 @@ module.exports = app => {
   app.get('/auth/google/callback',
           passport.authenticate('google'),
           (req, res) => {
-            console.log('hi');
-            res.redirect('/');
+            res.redirect('/surveys');
           });
   app.get('/api/current_user', (req, res) => {
     res.send(req.user);
   });
   app.get('/api/logout', (req, res) => {
     req.logout();
-    res.send(req.user);
+    res.redirect('/');
   })
 }
