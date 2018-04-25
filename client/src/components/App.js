@@ -6,7 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Dashboard from './Dashboard';
 import Landing from './Landing';
-import SurveyNew from './SurveyNew';
+import SurveyNew from './surveys/SurveyNew';
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,7 +20,8 @@ class App extends React.Component {
           <div>
             <Header />
             <Route exact path="/" component={Landing} />
-            <Route path="/surveys" component={Dashboard} />
+            <Route exact path="/surveys" component={Dashboard} />
+            <Route exact path="/surveys/new" component={SurveyNew} />
           </div>
         </BrowserRouter>
       </div>
